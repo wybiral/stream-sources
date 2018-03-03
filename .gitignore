@@ -1,0 +1,10 @@
+__pycache__/
+env/
+build/
+dist/
+*.egg-info/
+*.pyc
+*.pyo
+*.egg
+MANIFEST
+setup.cfg
