@@ -14,9 +14,12 @@ def create_update(feed_url, source):
             update['url'] = url
             update['title'] = clean_html(entry['title'])
             update['body'] = clean_html(entry['summary'])
-            thumb = __extract_thumb(entry)
-            if thumb:
-                update['thumb'] = thumb
+            if 'media_content' in entry and len(entry['media_content']) > 0:
+                update['thumb'] = entry['media_content'][0]['url']
+            else:
+                thumb = __extract_thumb(entry)
+                if thumb:
+                    update['thumb'] = thumb
             raw_date = entry['published_parsed']
             update['date'] = time.strftime('%Y-%m-%d %H:%M:%S', raw_date)
             update['source'] = source
