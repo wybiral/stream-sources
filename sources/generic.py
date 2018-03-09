@@ -1,14 +1,17 @@
 from bs4 import BeautifulSoup
 import feedparser
 import time
+from sources import Source
 
-def create_update(feed_url, source):
-    def update(stream):
-        feed = feedparser.parse(feed_url)
+
+class FeedSource(Source):
+
+    def update(self):
+        feed = feedparser.parse(self.FEED_URL)
         entries = feed['entries']
         for entry in reversed(entries):
             url = entry['link']
-            if url in stream:
+            if url in self.stream:
                 continue
             update = {}
             update['url'] = url
@@ -17,19 +20,19 @@ def create_update(feed_url, source):
             if 'media_content' in entry and len(entry['media_content']) > 0:
                 update['thumb'] = entry['media_content'][0]['url']
             else:
-                thumb = __extract_thumb(entry)
+                thumb = _extract_thumb(entry)
                 if thumb:
                     update['thumb'] = thumb
             raw_date = entry['published_parsed']
             update['date'] = time.strftime('%Y-%m-%d %H:%M:%S', raw_date)
-            update['source'] = source
-            stream.push(update)
-    return update
+            update['source'] = self.SOURCE
+            self.stream.push(update)
+
 
 def clean_html(raw):
     return BeautifulSoup(raw, 'html.parser').get_text().strip()
 
-def __extract_thumb(entry):
+def _extract_thumb(entry):
     if 'content' not in entry:
         return None
     if len(entry.content) < 1:
