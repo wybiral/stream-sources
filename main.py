@@ -39,6 +39,12 @@ def main():
     firehose.add_source('arstechnica.science', stream=stream)
     firehose.add_source('arstechnica.security', stream=stream)
     firehose.add_source('arstechnica.software', stream=stream)
+    # Add BBC News
+    stream = firehose.add_source('bbc').stream
+    firehose.add_source('bbc.business', stream=stream)
+    firehose.add_source('bbc.science', stream=stream)
+    firehose.add_source('bbc.technology', stream=stream)
+    firehose.add_source('bbc.world', stream=stream)
     # Add BleepingComputer
     firehose.add_source('bleepingcomputer')
     # Add C-SPAN

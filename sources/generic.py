@@ -17,7 +17,9 @@ class FeedSource(Source):
             update['url'] = url
             update['title'] = clean_html(entry['title'])
             update['body'] = clean_html(entry['summary'])
-            if 'media_content' in entry and len(entry['media_content']) > 0:
+            if 'media_thumbnail' in entry and len(entry['media_thumbnail']) > 0:
+                update['thumb'] = entry['media_thumbnail'][0]['url']
+            elif 'media_content' in entry and len(entry['media_content']) > 0:
                 update['thumb'] = entry['media_content'][0]['url']
             else:
                 thumb = _extract_thumb(entry)
