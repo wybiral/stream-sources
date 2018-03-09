@@ -33,12 +33,12 @@ class Firehose:
 def main():
     firehose = Firehose()
     # Add Ars Technica
-    source = firehose.add_source('arstechnica')
-    firehose.add_source('arstechnica.business', stream=source.stream)
-    firehose.add_source('arstechnica.gadgets', stream=source.stream)
-    firehose.add_source('arstechnica.science', stream=source.stream)
-    firehose.add_source('arstechnica.security', stream=source.stream)
-    firehose.add_source('arstechnica.software', stream=source.stream)
+    stream = firehose.add_source('arstechnica').stream
+    firehose.add_source('arstechnica.business', stream=stream)
+    firehose.add_source('arstechnica.gadgets', stream=stream)
+    firehose.add_source('arstechnica.science', stream=stream)
+    firehose.add_source('arstechnica.security', stream=stream)
+    firehose.add_source('arstechnica.software', stream=stream)
     # Add BleepingComputer
     firehose.add_source('bleepingcomputer')
     # Add C-SPAN
@@ -48,23 +48,23 @@ def main():
     # Add Radware advisories
     firehose.add_source('radware.advisories')
     # Add Reuters
-    source = firehose.add_source('reuters')
-    firehose.add_source('reuters.business', stream=source.stream)
-    firehose.add_source('reuters.money', stream=source.stream)
-    firehose.add_source('reuters.politics', stream=source.stream)
-    firehose.add_source('reuters.science', stream=source.stream)
-    firehose.add_source('reuters.technology', stream=source.stream)
-    firehose.add_source('reuters.us', stream=source.stream)
-    firehose.add_source('reuters.world', stream=source.stream)
+    stream = firehose.add_source('reuters').stream
+    firehose.add_source('reuters.business', stream=stream)
+    firehose.add_source('reuters.money', stream=stream)
+    firehose.add_source('reuters.politics', stream=stream)
+    firehose.add_source('reuters.science', stream=stream)
+    firehose.add_source('reuters.technology', stream=stream)
+    firehose.add_source('reuters.us', stream=stream)
+    firehose.add_source('reuters.world', stream=stream)
     # Add Threatpost
     firehose.add_source('threatpost')
     # Add Washington Post
-    source = firehose.add_source('washingtonpost')
-    firehose.add_source('washingtonpost.business', stream=source.stream)
-    firehose.add_source('washingtonpost.national', stream=source.stream)
-    firehose.add_source('washingtonpost.politics', stream=source.stream)
-    firehose.add_source('washingtonpost.technology', stream=source.stream)
-    firehose.add_source('washingtonpost.world', stream=source.stream)
+    stream = firehose.add_source('washingtonpost').stream
+    firehose.add_source('washingtonpost.business', stream=stream)
+    firehose.add_source('washingtonpost.national', stream=stream)
+    firehose.add_source('washingtonpost.politics', stream=stream)
+    firehose.add_source('washingtonpost.technology', stream=stream)
+    firehose.add_source('washingtonpost.world', stream=stream)
     # Run firehose
     firehose.run()
 
