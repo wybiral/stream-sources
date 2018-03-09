@@ -3,7 +3,7 @@ import sys
 
 class Stream:
 
-    LOG_SIZE = 100
+    LOG_SIZE = 500
 
     def __init__(self, log_path='log.txt'):
         self.log_path = log_path
