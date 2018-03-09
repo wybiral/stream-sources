@@ -2,13 +2,17 @@ from bs4 import BeautifulSoup
 import feedparser
 import time
 
-def create_update(feed_url, source):
-    def update(stream):
-        feed = feedparser.parse(feed_url)
+from sources import Source
+
+
+class WapoSource(Source):
+
+    def update(self):
+        feed = feedparser.parse(self.FEED_URL)
         entries = feed['entries']
         for entry in reversed(entries):
             url = entry['link']
-            if url in stream:
+            if url in self.stream:
                 continue
             update = {}
             update['url'] = url
@@ -25,6 +29,5 @@ def create_update(feed_url, source):
                 parts = url.split('/')
                 date = '-'.join(parts[-4:-1])
             update['date'] = date
-            update['source'] = source
-            stream.push(update)
-    return update
+            update['source'] = self.SOURCE
+            self.stream.push(update)

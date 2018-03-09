@@ -1,10 +1,10 @@
-from sources.washingtonpost import parser
+from sources.washingtonpost._source import WapoSource
 
-SOURCE = {
-    'name': 'Washington Post (World)',
-    'url': 'https://www.washingtonpost.com',
-}
+class Source(WapoSource):
 
-FEED_URL = 'https://www.washingtonpost.com/world/?resType=rss'
+    SOURCE = {
+        'name': 'Washington Post (World)',
+        'url': 'https://www.washingtonpost.com',
+    }
 
-update = parser.create_update(FEED_URL, SOURCE)
+    FEED_URL = 'https://www.washingtonpost.com/world/?resType=rss'
