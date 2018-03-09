@@ -1,6 +1,7 @@
 from sources.generic import FeedSource
 from . import business, gadgets, science, security, software
 
+
 class Source(FeedSource):
 
     SOURCE = {
