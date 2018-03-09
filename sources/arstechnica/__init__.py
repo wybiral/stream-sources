@@ -1,7 +1,7 @@
 from sources.generic import FeedSource
+from . import business, gadgets, science, security, software
 
-
-class ArsTechnica(FeedSource):
+class Source(FeedSource):
 
     SOURCE = {
         'name': 'Ars Technica',
