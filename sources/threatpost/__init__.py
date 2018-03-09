@@ -1,10 +1,11 @@
-from sources import generic_feed
+from sources.generic import FeedSource
 
-SOURCE = {
-    'name': 'Threatpost',
-    'url': 'https://threatpost.com/',
-}
 
-FEED_URL = 'https://threatpost.com/feed/'
+class Source(FeedSource):
 
-update = generic_feed.create_update(FEED_URL, SOURCE)
+    SOURCE = {
+        'name': 'Threatpost',
+        'url': 'https://threatpost.com/',
+    }
+
+    FEED_URL = 'https://threatpost.com/feed/'
