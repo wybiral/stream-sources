@@ -1,8 +1,8 @@
-from sources.generic import FeedSource
+from sources.reuters._source import ReutersSource
 from . import business, money, politics, science, technology, us, world
 
 
-class Source(FeedSource):
+class Source(ReutersSource):
 
     SOURCE = {
         'name': 'Reuters (Top News)',

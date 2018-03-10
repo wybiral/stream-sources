@@ -1,7 +1,7 @@
-from sources.generic import FeedSource
+from sources.reuters._source import ReutersSource
 
 
-class Source(FeedSource):
+class Source(ReutersSource):
 
     SOURCE = {
         'name': 'Reuters (Money)',
