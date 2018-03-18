@@ -22,7 +22,10 @@ class Firehose:
 
     def update(self):
         for source in self.sources:
-            source.update()
+            try:
+                source.update()
+            except:
+                continue
 
     def run(self):
         while True:
