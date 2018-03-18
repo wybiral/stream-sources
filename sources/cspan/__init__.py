@@ -15,6 +15,8 @@ class Source(SourceBase):
             if url in self.stream:
                 continue
             update = self._extract_video(video)
+            if update is None:
+                continue
             self.stream.push(update)
 
     def _recent_videos(self):
@@ -32,7 +34,10 @@ class Source(SourceBase):
         update['url'] = url
         update['title'] = title_a.find('h3').get_text()
         dates = text.find_all('time')
-        update['date'] = dates[1]['datetime']
+        date = ''
+        if len(dates) > 0 and 'datetime' not in dates[-1]:
+            date = dates[-1]['datetime']
+        update['date'] = date
         body_p = text.find('p', {'class': 'abstract'})
         if body_p:
             update['body'] = body_p.get_text()

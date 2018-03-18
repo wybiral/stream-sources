@@ -24,7 +24,9 @@ class Stream:
         return url in self.__log
 
     def push(self, item):
-        print(json.dumps(item), file=self.out)
+        json.dump(item, self.out)
+        self.out.write('\n')
+        self.out.flush()
         self.__log.append(item['url'])
         if len(self.__log) >= self.LOG_SIZE:
             self.__log = self.__log[-self.LOG_SIZE:]
