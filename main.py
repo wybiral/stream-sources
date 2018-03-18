@@ -51,6 +51,13 @@ def main():
     firehose.add_source('cspan')
     # Add Krebs on Security
     firehose.add_source('krebsonsecurity')
+    # Add NPR News
+    stream = firehose.add_source('npr').stream
+    firehose.add_source('npr.business', stream=stream)
+    firehose.add_source('npr.politics', stream=stream)
+    firehose.add_source('npr.science', stream=stream)
+    firehose.add_source('npr.technology', stream=stream)
+    firehose.add_source('npr.world', stream=stream)
     # Add Radware advisories
     firehose.add_source('radware.advisories')
     # Add Reuters
