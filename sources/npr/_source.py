@@ -1,8 +1,13 @@
 import requests
+
 from sources import Source
 
 
 class NprSource(Source):
+
+    '''
+    Custome feed parser Source for NPR articles.
+    '''
 
     def update(self):
         r = requests.get(self.FEED_URL)

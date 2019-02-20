@@ -1,10 +1,15 @@
 from bs4 import BeautifulSoup
 import feedparser
 import time
+
 from sources import Source
 
 
 class ArsSource(Source):
+
+    '''
+    Custome feed parser Source for Ars Technica articles.
+    '''
 
     def update(self):
         feed = feedparser.parse(self.FEED_URL)

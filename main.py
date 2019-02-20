@@ -1,33 +1,45 @@
+import importlib
 import os
 import time
-import importlib
+
 from stream import Stream
 
 
 class Firehose:
 
-    DELAY = 60.0
+    '''
+    A Firehose manages all stream sources. Once started it will update them
+    forever, pushing out their content to any stream they're attached to.
+    '''
+
+    # Seconds to sleep between each round of scraping
+    DELAY = 30.0
 
     def __init__(self):
-        self.sources = []
+        self._sources = []
 
     def add_source(self, name, stream=None):
+        ''' Add source by name (with optional log stream). '''
         module = importlib.import_module('sources.' + name)
+        # If no log stream is supplied one will be created
         if stream is None:
             os.makedirs('logs', exist_ok=True)
-            stream = Stream(os.path.join('logs', name + '.txt'))
+            stream = Stream(log_path=os.path.join('logs', name + '.txt'))
         source = module.Source(stream)
-        self.sources.append(source)
+        self._sources.append(source)
         return source
 
     def update(self):
-        for source in self.sources:
+        ''' Update all sources. '''
+        for source in self._sources:
             try:
                 source.update()
-            except:
+            except Exception as e:
+                print(e)
                 continue
 
-    def run(self):
+    def start(self):
+        ''' Start the firehose. '''
         while True:
             self.update()
             time.sleep(self.DELAY)
@@ -61,8 +73,6 @@ def main():
     firehose.add_source('npr.science', stream=stream)
     firehose.add_source('npr.technology', stream=stream)
     firehose.add_source('npr.world', stream=stream)
-    # Add Radware advisories
-    firehose.add_source('radware.advisories')
     # Add Reuters
     stream = firehose.add_source('reuters').stream
     firehose.add_source('reuters.business', stream=stream)
@@ -81,8 +91,8 @@ def main():
     firehose.add_source('washingtonpost.politics', stream=stream)
     firehose.add_source('washingtonpost.technology', stream=stream)
     firehose.add_source('washingtonpost.world', stream=stream)
-    # Run firehose
-    firehose.run()
+    # Start firehose
+    firehose.start()
 
 
 if __name__ == '__main__':

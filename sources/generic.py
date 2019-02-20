@@ -1,10 +1,18 @@
 from bs4 import BeautifulSoup
 import feedparser
 import time
+
 from sources import Source
 
 
 class FeedSource(Source):
+
+    '''
+    A generic FeedSource baseclass implements a Source class for RSS feeds.
+
+    Classes that inherit from FeedSource should have their own FEED_URL (an RSS
+    feed URL) and SOURCE (the source name) class properties.
+    '''
 
     def update(self):
         feed = feedparser.parse(self.FEED_URL)

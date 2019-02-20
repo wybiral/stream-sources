@@ -7,6 +7,10 @@ from sources import Source
 
 class WapoSource(Source):
 
+    '''
+    Custome feed parser Source for Washington Post articles.
+    '''
+
     def update(self):
         feed = feedparser.parse(self.FEED_URL)
         entries = feed['entries']

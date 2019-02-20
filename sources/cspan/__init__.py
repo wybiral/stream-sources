@@ -1,9 +1,14 @@
-import requests
 from bs4 import BeautifulSoup
+import requests
+
 from sources import Source as SourceBase
 
 
 class Source(SourceBase):
+
+    '''
+    Custome HTML scraper Source for C-SPAN videos.
+    '''
 
     SOURCE = {'name': 'C-SPAN', 'url': 'https://www.c-span.org'}
 
