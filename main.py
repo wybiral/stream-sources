@@ -73,6 +73,11 @@ def main():
     firehose.add_source('washingtonpost.politics', stream=stream)
     firehose.add_source('washingtonpost.technology', stream=stream)
     firehose.add_source('washingtonpost.world', stream=stream)
+    # Add Wired
+    stream = firehose.add_source('wired').stream
+    firehose.add_source('wired.business', stream=stream)
+    firehose.add_source('wired.science', stream=stream)
+    firehose.add_source('wired.security', stream=stream)
     # Start firehose
     firehose.start()
 
