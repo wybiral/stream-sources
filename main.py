@@ -64,6 +64,14 @@ def main():
     firehose.add_source('bleepingcomputer')
     # Add C-SPAN
     firehose.add_source('cspan')
+    # Add HuffPost
+    stream = firehose.add_source('huffpost').stream
+    firehose.add_source('huffpost.business', stream=stream)
+    firehose.add_source('huffpost.politics', stream=stream)
+    firehose.add_source('huffpost.science', stream=stream)
+    firehose.add_source('huffpost.technology', stream=stream)
+    firehose.add_source('huffpost.us', stream=stream)
+    firehose.add_source('huffpost.world', stream=stream)
     # Add Krebs on Security
     firehose.add_source('krebsonsecurity')
     # Add NPR News
