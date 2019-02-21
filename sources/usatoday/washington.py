@@ -1,7 +1,7 @@
-from sources.generic import FeedSource
+from sources.usatoday._source import UsaTodaySource
 
 
-class Source(FeedSource):
+class Source(UsaTodaySource):
 
     SOURCE = {
         'name': 'USA Today (Washington)',
