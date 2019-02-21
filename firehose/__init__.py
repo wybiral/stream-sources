@@ -1,5 +1,6 @@
 import importlib
 import os
+import sys
 import time
 
 from stream import Stream
@@ -12,8 +13,12 @@ class Firehose:
     forever, pushing out their content to any stream they're attached to.
     '''
 
-    def __init__(self, delay=30.0):
-        self._delay = delay
+    def __init__(self, out=sys.stdout, delay=30.0):
+        # file-like object to write output to
+        self.out = out
+        # seconds to sleep between each update loop
+        self.delay = delay
+        # list of installed source objects
         self._sources = []
 
     def add_source(self, name, stream=None):
@@ -22,7 +27,8 @@ class Firehose:
         # If no log stream is supplied one will be created
         if stream is None:
             os.makedirs('logs', exist_ok=True)
-            stream = Stream(log_path=os.path.join('logs', name + '.txt'))
+            log_path = os.path.join('logs', name + '.txt')
+            stream = Stream(out=self.out, log_path=log_path)
         source = module.Source(stream)
         self._sources.append(source)
         return source
@@ -39,4 +45,4 @@ class Firehose:
         ''' Start the firehose. '''
         while True:
             self.update()
-            time.sleep(self._delay)
+            time.sleep(self.delay)
