@@ -35,7 +35,6 @@ class Firehose:
             try:
                 source.update()
             except Exception as e:
-                print(e)
                 continue
 
     def start(self):
@@ -47,6 +46,12 @@ class Firehose:
 
 def main():
     firehose = Firehose()
+    # Add ABC News
+    stream = firehose.add_source('abc').stream
+    firehose.add_source('abc.politics', stream=stream)
+    firehose.add_source('abc.technology', stream=stream)
+    firehose.add_source('abc.us', stream=stream)
+    firehose.add_source('abc.world', stream=stream)
     # Add Ars Technica
     stream = firehose.add_source('arstechnica').stream
     firehose.add_source('arstechnica.business', stream=stream)
