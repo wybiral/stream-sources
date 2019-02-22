@@ -64,6 +64,14 @@ def main():
     firehose.add_source('reuters.us', stream=stream)
     firehose.add_source('reuters.world', stream=stream)
     firehose.add_source('reuters', stream=stream)
+    # Add The Guardian
+    stream = firehose.add_source('theguardian.business').stream
+    firehose.add_source('theguardian.politics', stream=stream)
+    firehose.add_source('theguardian.science', stream=stream)
+    firehose.add_source('theguardian.technology', stream=stream)
+    firehose.add_source('theguardian.us', stream=stream)
+    firehose.add_source('theguardian.world', stream=stream)
+    firehose.add_source('theguardian', stream=stream)
     # Add The Hill
     stream = firehose.add_source('thehill.administration').stream
     firehose.add_source('thehill.house', stream=stream)
