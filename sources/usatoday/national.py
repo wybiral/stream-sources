@@ -4,7 +4,8 @@ from sources.usatoday._source import UsaTodaySource
 class Source(UsaTodaySource):
 
     SOURCE = {
-        'name': 'USA Today (National)',
+        'name': 'USA Today',
+        'category': 'national',
         'url': 'https://www.usatoday.com',
     }
 

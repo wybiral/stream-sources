@@ -4,7 +4,8 @@ from sources.reuters._source import ReutersSource
 class Source(ReutersSource):
 
     SOURCE = {
-        'name': 'Reuters (Science)',
+        'name': 'Reuters',
+        'category': 'science',
         'url': 'https://www.reuters.com',
     }
 

@@ -3,7 +3,8 @@ from sources.washingtonpost._source import WapoSource
 class Source(WapoSource):
 
     SOURCE = {
-        'name': 'Washington Post (Politics)',
+        'name': 'Washington Post',
+        'category': 'politics',
         'url': 'https://www.washingtonpost.com',
     }
 

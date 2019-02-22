@@ -4,7 +4,8 @@ from sources.arstechnica._source import ArsSource
 class Source(ArsSource):
 
     SOURCE = {
-        'name': 'Ars Technica (Ministry of Innovation)',
+        'name': 'Ars Technica',
+        'category': 'business',
         'url': 'https://arstechnica.com',
     }
 

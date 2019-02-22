@@ -4,7 +4,8 @@ from sources.npr._source import NprSource
 class Source(NprSource):
 
     SOURCE = {
-        'name': 'NPR News (Business)',
+        'name': 'NPR News',
+        'category': 'business',
         'url': 'https://www.npr.org/sections/news/',
     }
 

@@ -4,7 +4,8 @@ from sources.generic import FeedSource
 class Source(FeedSource):
 
     SOURCE = {
-        'name': 'BBC News (Business)',
+        'name': 'BBC News',
+        'category': 'business',
         'url': 'http://www.bbc.com/news',
     }
 
