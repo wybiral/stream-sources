@@ -76,6 +76,12 @@ def main():
     firehose.add_source('usatoday.washington', stream=stream)
     firehose.add_source('usatoday.world', stream=stream)
     firehose.add_source('usatoday', stream=stream)
+    # Add Vox
+    stream = firehose.add_source('vox.business').stream
+    firehose.add_source('vox.politics', stream=stream)
+    firehose.add_source('vox.technology', stream=stream)
+    firehose.add_source('vox.world', stream=stream)
+    firehose.add_source('vox', stream=stream)
     # Add Washington Post
     stream = firehose.add_source('washingtonpost.business').stream
     firehose.add_source('washingtonpost.national', stream=stream)
