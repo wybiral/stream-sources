@@ -1,5 +1,4 @@
 from sources.reuters._source import ReutersSource
-from . import business, money, politics, science, technology, us, world
 
 
 class Source(ReutersSource):

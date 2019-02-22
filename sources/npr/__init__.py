@@ -1,5 +1,5 @@
 from sources.npr._source import NprSource
-from . import business, politics, science, technology, world
+
 
 class Source(NprSource):
 

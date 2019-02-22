@@ -1,5 +1,5 @@
 from sources.washingtonpost._source import WapoSource
-from . import business, national, politics, technology, world
+
 
 class Source(WapoSource):
 
