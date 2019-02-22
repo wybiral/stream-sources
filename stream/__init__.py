@@ -15,22 +15,22 @@ class Stream:
     # Maximum number of recent log entries to store
     LOG_SIZE = 500
 
-    def __init__(self, out=sys.stdout, log_path='log.txt'):
+    def __init__(self, out=sys.stdout, log='log.txt'):
         self.out = out
-        self.log_path = log_path
+        self.log = log
         self.__log = self.__load_log()
 
     def __load_log(self):
         ''' Load log file from log_path. '''
         try:
-            return open(self.log_path).read().split('\n')
+            return open(self.log).read().split('\n')
         except:
             pass
         return []
 
     def __save_log(self):
         ''' Save log file to log_path. '''
-        open(self.log_path, 'w').write('\n'.join(self.__log))
+        open(self.log, 'w').write('\n'.join(self.__log))
 
     def __contains__(self, url):
         ''' Check if url is in log. '''

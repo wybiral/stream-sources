@@ -27,8 +27,11 @@ class Firehose:
         # If no log stream is supplied one will be created
         if stream is None:
             os.makedirs('logs', exist_ok=True)
-            log_path = os.path.join('logs', name + '.txt')
-            stream = Stream(out=self.out, log_path=log_path)
+            # Logs are shared by root module
+            if '.' in name:
+                name = name.split('.')[0]
+            log = os.path.join('logs', name + '.txt')
+            stream = Stream(out=self.out, log=log)
         source = module.Source(stream)
         self._sources.append(source)
         return source
