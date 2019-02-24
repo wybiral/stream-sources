@@ -25,14 +25,9 @@ class FeedSource(Source):
             update['url'] = url
             update['title'] = clean_html(entry['title'])
             update['body'] = clean_html(entry['summary'])
-            if 'media_thumbnail' in entry and len(entry['media_thumbnail']) > 0:
-                update['thumb'] = entry['media_thumbnail'][0]['url']
-            elif 'media_content' in entry and len(entry['media_content']) > 0:
-                update['thumb'] = entry['media_content'][0]['url']
-            else:
-                thumb = _extract_thumb(entry)
-                if thumb:
-                    update['thumb'] = thumb
+            thumb = _extract_thumb(entry)
+            if thumb:
+                update['thumb'] = thumb
             raw_date = entry['published_parsed']
             update['date'] = time.strftime('%Y-%m-%d %H:%M:%S', raw_date)
             update['source'] = self.SOURCE
@@ -43,14 +38,15 @@ def clean_html(raw):
     return BeautifulSoup(raw, 'html.parser').get_text().strip()
 
 def _extract_thumb(entry):
-    if 'content' not in entry:
-        return None
-    if len(entry.content) < 1:
-        return None
-    content = entry.content[0]
-    if 'value' not in content:
-        return None
-    soup = BeautifulSoup(content['value'], 'html.parser')
+    if 'media_thumbnail' in entry and len(entry['media_thumbnail']) > 0:
+        return entry['media_thumbnail'][0]['url']
+    if 'media_content' in entry and len(entry['media_content']) > 0:
+        return entry['media_content'][0]['url']
+    if 'links' in entry and len(entry['links']) > 0:
+        imgs = [x for x in entry['links'] if 'image' in x['type']]
+        if len(imgs) > 0:
+            return imgs[0]['href']
+    soup = BeautifulSoup(entry['summary'], 'html.parser')
     img = soup.find('img')
     if img:
         return img['src']
