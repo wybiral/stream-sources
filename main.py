@@ -24,6 +24,11 @@ def main():
     firehose.add_source('bbc', stream=stream)
     # Add BleepingComputer
     firehose.add_source('bleepingcomputer')
+    # Add BuzzFeed News
+    stream = firehose.add_source('buzzfeednews.politics').stream
+    firehose.add_source('buzzfeednews.technology', stream=stream)
+    firehose.add_source('buzzfeednews.world', stream=stream)
+    firehose.add_source('buzzfeednews', stream=stream)
     # Add CNBC
     stream = firehose.add_source('cnbc.business').stream
     firehose.add_source('cnbc.politics', stream=stream)
