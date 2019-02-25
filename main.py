@@ -84,11 +84,13 @@ def main():
     firehose.add_source('thehill', stream=stream)
     # Add Threatpost
     firehose.add_source('threatpost')
+    '''
     # Add USA Today
     stream = firehose.add_source('usatoday.national').stream
     firehose.add_source('usatoday.washington', stream=stream)
     firehose.add_source('usatoday.world', stream=stream)
     firehose.add_source('usatoday', stream=stream)
+    '''
     # Add Vox
     stream = firehose.add_source('vox.business').stream
     firehose.add_source('vox.politics', stream=stream)
