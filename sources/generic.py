@@ -24,7 +24,7 @@ class FeedSource(Source):
             update = {}
             update['url'] = url
             update['title'] = clean_html(entry['title'])
-            update['body'] = clean_html(entry['summary'])
+            update['body'] = clean_html(_extract_body(entry))
             thumb = _extract_thumb(entry)
             if thumb:
                 update['thumb'] = thumb
@@ -36,6 +36,18 @@ class FeedSource(Source):
 
 def clean_html(raw):
     return BeautifulSoup(raw, 'html.parser').get_text().strip()
+
+def _extract_body(entry):
+    texts = []
+    texts.append(entry['summary'])
+    # some publications put the whole article so we search for the true summary
+    # by looking for the shortest text/html content if multiple exist.
+    if 'content' in entry:
+        for content in entry['content']:
+            if content['type'] == 'text/html':
+                texts.append(content['value'])
+    texts.sort(key=lambda x: len(x))
+    return texts[0]
 
 def _extract_thumb(entry):
     if 'media_thumbnail' in entry and len(entry['media_thumbnail']) > 0:
