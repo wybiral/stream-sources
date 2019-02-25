@@ -106,6 +106,12 @@ def main():
     firehose.add_source('usatoday.world', stream=stream)
     firehose.add_source('usatoday', stream=stream)
     '''
+    # Add VICE
+    stream = firehose.add_source('vice.business').stream
+    firehose.add_source('vice.politics', stream=stream)
+    firehose.add_source('vice.science', stream=stream)
+    firehose.add_source('vice.technology', stream=stream)
+    firehose.add_source('vice', stream=stream)
     # Add Vox
     stream = firehose.add_source('vox.business').stream
     firehose.add_source('vox.politics', stream=stream)
