@@ -21,6 +21,8 @@ class FeedSource(Source):
             url = entry['link']
             if url in self.stream:
                 continue
+            if not self.filter(entry):
+                continue
             update = {}
             update['url'] = url
             update['title'] = clean_html(entry['title'])
@@ -32,6 +34,9 @@ class FeedSource(Source):
             update['date'] = time.strftime('%Y-%m-%d %H:%M:%S', raw_date)
             update['source'] = self.SOURCE
             self.stream.push(update)
+
+    def filter(self, entry):
+        return True
 
 
 def clean_html(raw):
