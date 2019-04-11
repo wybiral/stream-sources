@@ -83,6 +83,11 @@ def main():
     firehose.add_source('reuters.us', stream=stream)
     firehose.add_source('reuters.world', stream=stream)
     firehose.add_source('reuters', stream=stream)
+    # Add Slate
+    stream = firehose.add_source('slate.business').stream
+    firehose.add_source('slate.politics', stream=stream)
+    firehose.add_source('slate.technology', stream=stream)
+    firehose.add_source('slate', stream=stream)
     # Add The Atlantic
     stream = firehose.add_source('theatlantic.business').stream
     firehose.add_source('theatlantic.politics', stream=stream)
