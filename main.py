@@ -52,8 +52,6 @@ def main():
     firehose.add_source('huffpost.us', stream=stream)
     firehose.add_source('huffpost.world', stream=stream)
     firehose.add_source('huffpost', stream=stream)
-    # Add Krebs on Security
-    firehose.add_source('krebsonsecurity')
     # Add NPR News
     stream = firehose.add_source('npr.business').stream
     firehose.add_source('npr.politics', stream=stream)
