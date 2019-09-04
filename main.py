@@ -112,6 +112,8 @@ def main():
     firehose.add_source('thehill.house', stream=stream)
     firehose.add_source('thehill.senate', stream=stream)
     firehose.add_source('thehill', stream=stream)
+    # Add The Intercept
+    firehose.add_source('theintercept')
     # Add Threatpost
     firehose.add_source('threatpost')
     '''
