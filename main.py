@@ -16,6 +16,12 @@ def main():
     firehose.add_source('arstechnica.security', stream=stream)
     firehose.add_source('arstechnica.software', stream=stream)
     firehose.add_source('arstechnica', stream=stream)
+    # Add Axios
+    stream = firehose.add_source('axios.politics').stream
+    firehose.add_source('axios.science', stream=stream)
+    firehose.add_source('axios.technology', stream=stream)
+    firehose.add_source('axios.world', stream=stream)
+    firehose.add_source('axios', stream=stream)
     # Add BBC News
     stream = firehose.add_source('bbc.business').stream
     firehose.add_source('bbc.science', stream=stream)
