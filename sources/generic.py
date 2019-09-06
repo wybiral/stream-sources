@@ -26,7 +26,7 @@ class FeedSource(Source):
             update = {}
             update['url'] = url
             update['title'] = clean_html(entry['title'])
-            update['body'] = clean_html(_extract_body(entry))
+            update['body'] = self.clean_body(_extract_body(entry))
             thumb = _extract_thumb(entry)
             if thumb:
                 update['thumb'] = thumb
@@ -34,6 +34,9 @@ class FeedSource(Source):
             update['date'] = time.strftime('%Y-%m-%d %H:%M:%S', raw_date)
             update['source'] = self.SOURCE
             self.stream.push(update)
+
+    def clean_body(self, text):
+        return clean_html(text)
 
     def filter(self, entry):
         return True

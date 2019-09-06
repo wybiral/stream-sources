@@ -1,7 +1,7 @@
-from sources.generic import FeedSource
+from sources.axios._source import AxiosSource
 
 
-class Source(FeedSource):
+class Source(AxiosSource):
 
     SOURCE = {
         'name': 'Axios',
