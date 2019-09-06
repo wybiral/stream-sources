@@ -1,7 +1,7 @@
-from sources.generic import FeedSource
+from sources.theguardian._source import TheGuardianSource
 
 
-class Source(FeedSource):
+class Source(TheGuardianSource):
 
     SOURCE = {
         'name': 'The Guardian',
