@@ -99,6 +99,11 @@ def main():
     firehose.add_source('theatlantic.technology', stream=stream)
     firehose.add_source('theatlantic.us', stream=stream)
     firehose.add_source('theatlantic', stream=stream)
+    # Add The Daily Beast
+    stream = firehose.add_source('thedailybeast.politics').stream
+    firehose.add_source('thedailybeast.us', stream=stream)
+    firehose.add_source('thedailybeast.world', stream=stream)
+    firehose.add_source('thedailybeast', stream=stream)
     # Add The Guardian
     stream = firehose.add_source('theguardian.business').stream
     firehose.add_source('theguardian.politics', stream=stream)
