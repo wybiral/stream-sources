@@ -65,6 +65,7 @@ def main():
     firehose.add_source('npr.technology', stream=stream)
     firehose.add_source('npr.world', stream=stream)
     firehose.add_source('npr', stream=stream)
+    '''
     # Add The New York Times
     stream = firehose.add_source('nytimes.business').stream
     firehose.add_source('nytimes.politics', stream=stream)
@@ -73,6 +74,7 @@ def main():
     firehose.add_source('nytimes.us', stream=stream)
     firehose.add_source('nytimes.world', stream=stream)
     firehose.add_source('nytimes', stream=stream)
+    '''
     # Add Politico
     stream = firehose.add_source('politico.congress').stream
     firehose.add_source('politico.defense', stream=stream)
